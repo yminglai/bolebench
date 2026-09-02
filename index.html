@@ -167,19 +167,12 @@
 
 <section>
   <h2>The Exam · human baseline</h2>
-  <p class="muted">20 items, 20&ndash;30 minutes. Two real, blinded research attempts per item; reality has already graded them. At the end: your score against 8 frontier models on the exact same items. Click your name &mdash; your slice is pre-assigned. <b>Not at Scale? You are welcome too</b> &mdash; enter your name in the last row and you will get your own slice; results are scored identically and grouped by research stage, not affiliation.</p>
-  <table>
-    <thead><tr><th>Participant</th><th>Your exam</th></tr></thead>
-    <tbody>
-      <tr><td>Utkarsh</td><td><a href="bole-quiz-01.html?p=Utkarsh">take slice 01 &rarr;</a></td></tr>
-      <tr><td>Daniel</td><td><a href="bole-quiz-02.html?p=Daniel">take slice 02 &rarr;</a></td></tr>
-      <tr><td>Haris</td><td><a href="bole-quiz-03.html?p=Haris">take slice 03 &rarr;</a></td></tr>
-      <tr><td>Renxiong</td><td><a href="bole-quiz-04.html?p=Renxiong">take slice 04 &rarr;</a></td></tr>
-      <tr><td>Mark</td><td><a href="bole-quiz-05.html?p=Mark">take slice 05 &rarr;</a></td></tr>
-      <tr><td>Jingxuan</td><td><a href="bole-quiz-06.html?p=Jingxuan">take slice 06 &rarr;</a></td></tr>
-      <tr class="you"><td>Someone else?</td><td><input id="np" placeholder="your name" style="padding:4px 8px;border:1px solid var(--hairline);border-radius:6px;background:transparent;color:var(--ink)"> <a href="#" onclick="goSlice();return false">take your slice &rarr;</a></td></tr>
-    </tbody>
-  </table>
+  <p class="muted">20 items, 20&ndash;30 minutes. Two real, blinded research attempts per item; reality has already graded them. At the end: your score against 8 frontier models on the exact same items. Anyone can take it &mdash; results are grouped by research stage, not by name or affiliation.</p>
+  <p style="margin-top:14px">
+    <input id="np" placeholder="your name" style="padding:8px 12px;border:1px solid var(--hairline);border-radius:8px;background:transparent;color:var(--ink);font-size:15px">
+    <a href="#" onclick="goSlice();return false" style="margin-left:10px;font-weight:600">take your exam &rarr;</a>
+  </p>
+  <p class="small" style="color:var(--ink-3);font-size:13px;margin-top:8px">Your name deterministically assigns one of 20 item slices (10 shared anchors + 10 unique), so every participant extends coverage while staying comparable.</p>
 </section>
 
 <section>
@@ -222,7 +215,7 @@
 <script>
 function goSlice(){ const n=(document.getElementById('np').value||'anon').trim();
   let h=0; for(const c of n) h=(h*31+c.charCodeAt(0))>>>0;
-  const sl=String(7+(h%14)).padStart(2,'0');  // extras spread over slices 07-20; 01-06 reserved for the named six
+  const sl=String(1+(h%20)).padStart(2,'0');
   location.href='bole-quiz-'+sl+'.html?p='+encodeURIComponent(n); }
 </script>
 </body>
