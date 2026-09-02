@@ -56,7 +56,7 @@ button.sec:disabled{opacity:.35}
   <h1>BoleBench &middot; Human Baseline</h1>
   <p class="sub">20 items, roughly 20&ndash;30 minutes. Each item shows two real, blinded attempts at the same ML research task (identity, scores, and results stripped). Your job: judge which attempt achieved the <b>higher final score</b>. Reality has already graded every item &mdash; at the end you will see whether you beat 8 frontier LLMs on exactly the same 20 items.</p>
   <label>Name / alias (optional)<input id="who" placeholder="name"></label>
-  <label>Email (so results can be attributed &amp; followed up)<input id="em" placeholder="you@scale.com"></label>
+  <label>Email (so results can be attributed &amp; followed up)<input id="em" placeholder="your email (any affiliation)"></label>
   <label>Research stage (for group statistics)
     <select id="tier">
       <option value="">select&hellip;</option>
@@ -217,7 +217,7 @@ function dl(){ const p=JSON.parse(window._blob);
 function send(){ location.href='mailto:minglai.yang@scale.com?subject='+encodeURIComponent('BoleBench human baseline result')+'&body='+encodeURIComponent(window._blob); }
 </script><script>
 // --- exam-site additions: noindex handled in <head>; URL prefill + auto-collect ---
-const COLLECT_URL = "";  // paste Apps Script web-app URL here to enable auto-collection
+const COLLECT_URL = "https://script.google.com/macros/s/AKfycbyzDVg8ngiT4pX1uYquAGMp-l_eaEFeHsuC2jn-vo28XkaCSsGBgfeXE4el_wUT4KHTdA/exec";
 (function(){ const q=new URLSearchParams(location.search);
   if(q.get("p")){ const w=document.getElementById("who"); if(w){ w.value=q.get("p"); } } })();
 function autocollect(){ if(!COLLECT_URL) return;
