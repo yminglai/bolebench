@@ -177,7 +177,7 @@
       <tr><td>Renxiong</td><td><a href="bole-quiz-04.html?p=Renxiong">take slice 04 &rarr;</a></td></tr>
       <tr><td>Mark</td><td><a href="bole-quiz-05.html?p=Mark">take slice 05 &rarr;</a></td></tr>
       <tr><td>Jingxuan</td><td><a href="bole-quiz-06.html?p=Jingxuan">take slice 06 &rarr;</a></td></tr>
-      <tr class="you"><td>Someone else?</td><td><a href="bole-quiz-01.html">take slice 01 anonymously &rarr;</a></td></tr>
+      <tr class="you"><td>Someone else?</td><td><input id="np" placeholder="your name" style="padding:4px 8px;border:1px solid var(--hairline);border-radius:6px;background:transparent;color:var(--ink)"> <a href="#" onclick="goSlice();return false">take your slice &rarr;</a></td></tr>
     </tbody>
   </table>
 </section>
@@ -219,5 +219,11 @@
 </footer>
 
 </div>
+<script>
+function goSlice(){ const n=(document.getElementById('np').value||'anon').trim();
+  let h=0; for(const c of n) h=(h*31+c.charCodeAt(0))>>>0;
+  const sl=String(7+(h%14)).padStart(2,'0');  // extras spread over slices 07-20; 01-06 reserved for the named six
+  location.href='bole-quiz-'+sl+'.html?p='+encodeURIComponent(n); }
+</script>
 </body>
 </html>
