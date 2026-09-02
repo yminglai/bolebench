@@ -117,10 +117,6 @@ function start(){
 function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
 function deco(s){
   let h=esc(s);
-  if((h.match(/→/g)||[]).length>=2){
-    h=h.split('→').map(x=>'<span class="st">'+x.trim()+'</span>').join('<span class="ar">→</span>');
-    h='<span class="flow">'+h+'</span>';
-  }
   h=h.replace(/([A-Za-z_]+ ?= ?[\d.e-]+|\d+(?:\.\d+)?e-?\d+)/g,'<code>$1</code>');
   return h;
 }
@@ -143,10 +139,9 @@ function fmt(s){
     const trunc=/…\s*$/.test(p);
     if(/^(the )?baseline|^both baseline|^baseline and candidate/i.test(p)){ base.push([p,trunc]); continue; }
     if(/explor\w+ (weights?|artifacts?|best)|formal (replay|applies|applied|restarted)|cross(es|ed)? (the )?(boundary|phases)|^no (external|generated|synthetic)|text-only patch|not (transferred|submitted)|enters? formal/i.test(p)){ fine.push([p,trunc]); continue; }
-    if(!tags && /^(thus|this|these|so)/i.test(p) && /chang/i.test(p)){ tags=scopeTags(p); if(tags){ fine.push([p,trunc]); continue; } }
     change.push([p,trunc]);
   }
-  const rend=a=>a.map(([p,t])=>'<p'+(t?' class="trunc"':'')+'>'+deco(p)+(t?' <span class="trunc">(text cut off)</span>':'')+'</p>').join('');
+  const rend=a=>a.map(([p,t])=>'<p'+(t?' class="trunc"':'')+'>'+deco(p)+(t?' <span class="trunc" title="Every attempt description ends at the same fixed character budget; the model judges saw exactly this same cut text.">(cut at the shared evidence budget)</span>':'')+'</p>').join('');
   let body='<div class="sec"><span class="lab">What the attempt does</span>'+rend(change)+(tags||'')+'</div>';
   const fp = base.concat(fine);
   if(fp.length) body+='<div class="sec fine"><span class="lab">Fine print (incl. how this attempt describes the baseline)</span>'+rend(fp)+'</div>';
@@ -159,7 +154,7 @@ function show(){
   document.getElementById('prog').style.width=(idx/mine.length*100)+'%';
   const links = it.tlinks.map(([t,u])=>`<a href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join(' &middot; ');
   document.getElementById('task').innerHTML='<b>'+esc(it.tname)+'</b><br>'+esc(it.tdesc)
-    +'<br><span class="m">Final metric: '+esc(it.tmetric)+'. Both attempts are code patches proposed by (anonymized) AI research agents, each given a 4-hour exploration budget on the same expert-tuned baseline repo (baseline = 0.1); every patch was retrained from scratch and scored. Background reading: '+links+' &mdash; the attempts and their outcomes appear in no paper.</span>';
+    +'<br><span class="m">Final metric: '+esc(it.tmetric)+'. Both attempts are code patches proposed by (anonymized) AI research agents, each given a 4-hour exploration budget on the same expert-tuned baseline repo (baseline = 0.1); every patch was retrained from scratch and scored. Long descriptions end at a fixed character budget &mdash; the model judges saw exactly the same cut text. Background reading: '+links+' &mdash; the attempts and their outcomes appear in no paper.</span>';
   const fa=fmt(it[canonOf('A')]), fb=fmt(it[canonOf('B')]);
   const bp=document.getElementById('basep');
   bp.innerHTML='<span class="lab">Baseline &mdash; the shared starting point (the method the repo ships)</span><p>'+esc(it.tbase)+'</p>';
