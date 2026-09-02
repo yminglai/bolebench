@@ -1,9 +1,7 @@
-<svg viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="BoleBench sources: any parallel-attempt corpus feeds one converter and one leaderboard">
+<svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="Sources feed one item bank; judges make pairwise comparisons; reality resolves">
   <style>
     .tx-t  { font-size: 16px; font-weight: 650; fill: var(--ink, #1C1A17); }
-    .tx-n  { font-size: 14.5px; font-weight: 600; fill: var(--ink, #1C1A17); }
-    .tx-m  { font-size: 12.5px; fill: var(--ink-2, #57534C); }
-    .tx-s  { font-size: 10px; font-weight: 600; letter-spacing: 0.8px; fill: var(--ink-3, #8A857C); }
+    .tx-m  { font-size: 13px; fill: var(--ink-2, #57534C); }
     .tx-leaf { fill: var(--tile-bg, #F7F5F1); stroke: var(--hairline, #E6E2DB); }
     .tx-line { stroke: var(--hairline, #E6E2DB); stroke-width: 1; }
     .tx-arr  { stroke: var(--ink-3, #8A857C); stroke-width: 1.5; fill: none; }
@@ -14,50 +12,37 @@
     </marker>
   </defs>
 
-  <!-- Box 1: sources -->
-  <rect class="tx-leaf" x="20" y="30" width="335" height="280" rx="12"/>
-  <text class="tx-t" x="40" y="62">Attempts, from anywhere</text>
+  <!-- Sources -->
+  <rect class="tx-leaf" x="20" y="40" width="300" height="190" rx="12"/>
+  <text class="tx-t" x="40" y="74">Sources</text>
+  <line class="tx-line" x1="40" y1="90" x2="300" y2="90"/>
+  <text class="tx-m" x="40" y="118"><tspan font-weight="600" fill="var(--ink, #1C1A17)">benchmarks</tspan> — e.g. AI4AI-Bench</text>
+  <text class="tx-m" x="40" y="148"><tspan font-weight="600" fill="var(--ink, #1C1A17)">arXiv papers</tspan> — their own ablations</text>
+  <text class="tx-m" x="40" y="178"><tspan font-weight="600" fill="var(--ink, #1C1A17)">&#8230; anything</tspan> with several real</text>
+  <text class="tx-m" x="40" y="196">attempts at the same goal</text>
 
-  <circle cx="46" cy="92" r="4" fill="var(--accent, #A93226)"/>
-  <text class="tx-n" x="60" y="97">AI4AI-Bench <tspan class="tx-m" font-weight="400">— 29 systems × 10 tasks</tspan></text>
+  <!-- Item bank -->
+  <rect class="tx-leaf" x="390" y="40" width="250" height="190" rx="12"/>
+  <text class="tx-t" x="410" y="74">Item bank</text>
+  <line class="tx-line" x1="410" y1="90" x2="620" y2="90"/>
+  <text class="tx-m" x="410" y="118">two attempts, same task,</text>
+  <text class="tx-m" x="410" y="138">described up to the decision point</text>
+  <text class="tx-m" x="410" y="168">identities &#183; scores &#183; outcomes</text>
+  <text class="tx-m" x="410" y="188">stripped</text>
 
-  <circle cx="46" cy="134" r="4" fill="var(--accent, #A93226)"/>
-  <text class="tx-n" x="60" y="139">arXiv papers <tspan class="tx-m" font-weight="400">— racing their own ablations</tspan></text>
-
-  <circle cx="46" cy="176" r="4" fill="none" stroke="var(--accent, #A93226)" stroke-width="1.5"/>
-  <text class="tx-n" x="60" y="181">RSI-Exam <tspan class="tx-m" font-weight="400">— replayed by a 5-system fleet</tspan></text>
-
-  <circle cx="46" cy="218" r="4" fill="none" stroke="var(--accent, #A93226)" stroke-width="1.5"/>
-  <text class="tx-n" x="60" y="223">RSI-Forge <tspan class="tx-m" font-weight="400">— tasks forged from fresh papers</tspan></text>
-
-  <circle cx="46" cy="260" r="4" fill="none" stroke="var(--ink-3, #8A857C)" stroke-width="1.5" stroke-dasharray="2 2"/>
-  <text class="tx-n" x="60" y="265">AntePost <tspan class="tx-m" font-weight="400">— live proposals, humans + agents</tspan></text>
-
-  <text class="tx-s" x="40" y="296">&#9679; SHIPPED &nbsp; &#9675; RUNNING &nbsp; &#9676; NEXT</text>
-
-  <!-- Box 2: converter -->
-  <rect class="tx-leaf" x="405" y="70" width="230" height="200" rx="12"/>
-  <text class="tx-t" x="425" y="104">One converter</text>
-  <text class="tx-m" x="425" y="136">blind the attempts,</text>
-  <text class="tx-m" x="425" y="156">strip every outcome</text>
-  <line class="tx-line" x1="425" y1="172" x2="615" y2="172"/>
-  <text class="tx-m" x="425" y="196">pair them &#183; judges predict</text>
-  <text class="tx-m" x="425" y="222"><tspan font-weight="600" fill="var(--accent, #A93226)">reality resolves</tspan></text>
-
-  <!-- Box 3: bank -->
-  <rect class="tx-leaf" x="700" y="70" width="280" height="200" rx="12"/>
-  <text class="tx-t" x="720" y="104">One leaderboard</text>
-  <text class="tx-m" x="720" y="136">pick &#183; kill &#183; dare &#183; trust &#183; replay</text>
-  <line class="tx-line" x1="720" y1="152" x2="960" y2="152"/>
-  <text class="tx-m" x="720" y="176">frontier LLMs vs human experts</text>
-  <text class="tx-m" x="720" y="196">vs one-line heuristics —</text>
-  <text class="tx-m" x="720" y="216">on the same blinded items</text>
+  <!-- Pairwise comparison -->
+  <rect class="tx-leaf" x="710" y="40" width="270" height="190" rx="12"/>
+  <text class="tx-t" x="730" y="74">Pairwise comparison</text>
+  <line class="tx-line" x1="730" y1="90" x2="960" y2="90"/>
+  <text class="tx-m" x="730" y="118">the judge — model or human —</text>
+  <text class="tx-m" x="730" y="138">picks A or B, with confidence</text>
+  <text class="tx-m" x="730" y="172"><tspan font-weight="600" fill="var(--accent, #A93226)">reality resolves</tspan> — the attempt</text>
+  <text class="tx-m" x="730" y="192">that actually scored higher wins</text>
 
   <!-- arrows -->
-  <path class="tx-arr" d="M355,170 L403,170" marker-end="url(#tx-ah)"/>
-  <path class="tx-arr" d="M635,170 L698,170" marker-end="url(#tx-ah)"/>
+  <path class="tx-arr" d="M320,135 L388,135" marker-end="url(#tx-ah)"/>
+  <path class="tx-arr" d="M640,135 L708,135" marker-end="url(#tx-ah)"/>
 
-  <!-- footer -->
-  <rect x="20" y="336" width="960" height="46" rx="10" fill="none" stroke="var(--accent, #A93226)" stroke-width="1.5"/>
-  <text class="tx-n" x="40" y="364">Benchmark-agnostic: <tspan class="tx-m" font-weight="400">a source needs exactly three things — one problem &#183; two or more attempts &#183; one reality-resolved number.</tspan></text>
+  <!-- one quiet footer line -->
+  <text class="tx-m" x="20" y="272" fill="var(--ink-3, #8A857C)">Any source qualifies with one problem, two or more attempts, and one reality-resolved number.</text>
 </svg>
