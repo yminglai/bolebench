@@ -3,11 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>BoleBench 伯乐 — a reality-resolved benchmark of research taste</title>
+<title>Bole 伯乐 — a research-taste arena</title>
 <meta name="description" content="Bole measures whether an LLM can judge which research approach will win — before the results exist. Judges predict; reality resolves.">
-<meta property="og:title" content="BoleBench 伯乐 — a reality-resolved benchmark of research taste">
-<meta property="og:description" content="Can an LLM judge which research will work, before the results exist? Blinded ex-ante pairs, resolved by reality, scored with IRT — not raw win rate.">
+<meta property="og:title" content="Bole 伯乐 — a research-taste arena">
+<meta property="og:description" content="Can an LLM judge which research will work, before the results exist? Blinded ex-ante pairs, resolved by reality, scored by gap-stratified accuracy, calibration, and selection regret — not raw win rate.">
 <style>
   :root {
     --bg: #FDFCFA;
@@ -129,8 +128,8 @@
 
 <header>
   <div class="seal" aria-hidden="true">伯乐</div>
-  <h1>BoleBench <span class="zh">伯乐</span></h1>
-  <p class="tagline">A reality-resolved benchmark of research taste — <b>judges predict before the results exist; reality grades every answer.</b></p>
+  <h1>Bole <span class="zh">伯乐</span></h1>
+  <p class="tagline">A research-taste arena — <b>judges predict before the results exist; reality resolves.</b></p>
 
   <div class="epigraph">
     <div class="zh">世有伯乐，然后有千里马。千里马常有，而伯乐不常有。</div>
@@ -143,7 +142,6 @@
   <h2>What</h2>
   <p>Can an LLM judge which research approach will win — <em>before the results exist?</em></p>
   <p class="muted">Bole shows judges only the ex-ante description of competing research attempts. Reality — many systems attempting the same task under the same budget — settles who was right. No committee votes, no citation proxies: outcomes resolve every item.</p>
-  <p class="muted">Scope, honestly: BoleBench measures the taste <em>inside running research</em> — pick, kill, dare, trust — the layer AI systems already exercise with real compute. Which problems deserve to exist is a different, harder question we do not claim. And the item bank is renewable by design: vintage-2 (23 fresh tasks × 5 systems, the judges now also the judged) is generating as you read. Scores expire with each model generation; the measurement procedure does not.</p>
 </section>
 
 <section>
@@ -156,23 +154,13 @@
 </section>
 
 <section>
-  <h2>Findings · v1 (8 judges, 4 model families)</h2>
+  <h2>Findings · v1 (9 judges, 5 model families)</h2>
   <div class="tiles">
-    <div class="tile"><div class="n">135×</div><div class="l">more shared blind spots across 4 model families than independence predicts (net of audited item defects)</div></div>
+    <div class="tile"><div class="n">135×</div><div class="l">more shared blind spots across 5 model families than independence predicts (net of audited bank defects)</div></div>
     <div class="tile"><div class="n">75%</div><div class="l">of the oracle–random gap captured by the best judge when selecting 1 of 10 attempts</div></div>
     <div class="tile"><div class="n">28%</div><div class="l">of exploration evidence points to the eventual loser — and every judge follows it</div></div>
-    <div class="tile"><div class="n">77.9%</div><div class="l">scored by the one-line "pick the bolder attempt" heuristic on boldness-clear pairs — above every judge; real taste is the thin residue beyond it</div></div>
+    <div class="tile"><div class="n">4</div><div class="l">sub-skills measured — pick, kill, dare, trust — and they dissociate</div></div>
   </div>
-</section>
-
-<section>
-  <h2>The Exam · human baseline</h2>
-  <p class="muted">20 items, 20&ndash;30 minutes. Two real, blinded research attempts per item; reality has already graded them. At the end: your score against 8 frontier models on the exact same items. Anyone can take it &mdash; results are grouped by research stage, not by name or affiliation.</p>
-  <p style="margin-top:14px">
-    <input id="np" placeholder="your name" style="padding:8px 12px;border:1px solid var(--hairline);border-radius:8px;background:transparent;color:var(--ink);font-size:15px">
-    <a href="#" onclick="goSlice();return false" style="margin-left:10px;font-weight:600">take your exam &rarr;</a>
-  </p>
-  <p class="small" style="color:var(--ink-3);font-size:13px;margin-top:8px">Your name deterministically assigns one of 20 item slices (10 shared anchors + 10 unique), so every participant extends coverage while staying comparable.</p>
 </section>
 
 <section>
@@ -184,6 +172,7 @@
       <tr><td>kimi-k3</td><td class="muted">Moonshot</td><td class="num" style="text-align:right">68.3%</td></tr>
       <tr><td>claude-sonnet-5</td><td class="muted">Anthropic</td><td class="num" style="text-align:right">67.8%</td></tr>
       <tr><td>gpt-5.6-terra</td><td class="muted">OpenAI</td><td class="num" style="text-align:right">62.7%</td></tr>
+      <tr><td>gpt-5.6-luna</td><td class="muted">OpenAI</td><td class="num" style="text-align:right">62.6%</td></tr>
       <tr><td>gpt-5.6-sol</td><td class="muted">OpenAI</td><td class="num" style="text-align:right">62.0%</td></tr>
       <tr><td>claude-opus-4-8</td><td class="muted">Anthropic</td><td class="num" style="text-align:right">60.6%</td></tr>
       <tr><td>grok-4.1-fast</td><td class="muted">xAI</td><td class="num" style="text-align:right">58.8%</td></tr>
@@ -196,27 +185,33 @@
 <section>
   <h2>Findings so far</h2>
   <ul class="findings">
-    <li><b>One Bo Le for the whole field.</b> Across 8 judges from 4 model families, 4.5% of items are missed by <em>every</em> judge (4.9% raw; net of 9 audited bank defects) — ≈135× what independent errors would predict. Shared training begets shared taste, and shared blind spots.</li>
+    <li><b>Most of the taste is an audacity prior.</b> A one-line heuristic — pick the bolder attempt — scores 77.9% on clear-cut pairs, beating every frontier judge. Where boldness ties, judges keep a real but thin edge (+10–13 pts): that residue is the taste worth measuring.</li>
+    <li><b>One Bo Le for the whole field.</b> Across 8 judges from 5 model families, 4.5% of items are missed by <em>every</em> judge — ≈135× what independent errors would predict (audited: bank defects excluded, only 5 of 90 shared misses are pure noise). Shared training begets shared taste, and shared blind spots.</li>
     <li><b>Taste is worth real compute.</b> The best judge, picking 1 of 10 real attempts, captures 75% of the oracle–random gap. The worst judge is <em>below random</em>: an unevaluated research preference model can be worse than a coin.</li>
     <li><b>Judges obey evidence, they don't weigh it.</b> When exploration evidence points the wrong way (28% of the time), accuracy collapses to 23–45%. Trust is a distinct, measurable sub-skill.</li>
-    <li><b>Most of frontier taste is one instinct.</b> "Pick the bolder attempt" scores 77.9%, beating every judge. Strip the pairs that instinct answers and judges keep +10&ndash;14 points of residual judgment &mdash; thin, real, and where models actually differ.</li>
-    <li><b>Taste is not one skill.</b> One of the weakest pickers is the best at knowing what to kill; four sub-skills &mdash; pick, kill, dare, trust &mdash; measurably dissociate.</li>
-    <li><b>The signal is shallow but real.</b> A 350-character gist captures most of the description signal; process evidence adds up to +18 points; author identity adds little for most judges — it is genuinely informative, judges just barely use it.</li>
+    <li><b>The signal is shallow but real.</b> A 350-character gist captures most of the description signal; process evidence adds up to +18 points; author identity adds almost nothing.</li>
   </ul>
 </section>
 
+
+<section id="antepost">
+  <h2>Next · AntePost — a benchmark-agnostic building block</h2>
+  <p class="muted">BoleBench grades judges on races already run. AntePost closes the loop forward — an <em>ante-post</em> bet is placed before the field is even final; here, judgment is placed before anything is run — on any problem, from any benchmark or none.</p>
+  <ol class="steps">
+    <li><b>Agents propose.</b> Given a live problem, agents draft candidate solutions — before anything is run.</li>
+    <li><b>Humans propose too.</b> The data we are collecting next: experts read the agent proposals, add their own, and make their own pre-execution call — the ante-post pick.</li>
+    <li><b>Everything becomes blinded pairs.</b> Agent vs agent, human vs agent — the same reality-resolved pairwise primitive, formulated before the outcome exists.</li>
+    <li><b>A judge selects, ex ante.</b> Another agent picks the side that is more promising and better aligned with research intuition. Execution then settles who was right — and every resolution becomes a new benchmark item.</li>
+  </ol>
+  <p class="muted">Benchmark-agnostic by construction: it needs only a problem, proposals, and one eventual execution. Any pipeline that runs experiments can mint reality-resolved taste items.</p>
+</section>
+
 <footer>
-  <span>Paper &amp; benchmark release — coming</span>
+  <span>Paper &amp; arena — coming</span>
   <span><a href="mailto:minglai.yang@scale.com">contact</a></span>
   <span>2026</span>
 </footer>
 
 </div>
-<script>
-function goSlice(){ const n=(document.getElementById('np').value||'anon').trim();
-  let h=0; for(const c of n) h=(h*31+c.charCodeAt(0))>>>0;
-  const sl=String(1+(h%20)).padStart(2,'0');
-  location.href='bole-quiz-'+sl+'.html?p='+encodeURIComponent(n); }
-</script>
 </body>
 </html>
