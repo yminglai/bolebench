@@ -9,11 +9,11 @@ function doPost(e) {
   const ss = SpreadsheetApp.openById(SHEET_ID());
   const sh = ss.getSheetByName('responses') || ss.insertSheet('responses');
   if (sh.getLastRow() === 0) {
-    sh.appendRow(['timestamp','who','tier','score','version','item_id','choice','conf','sec','flipped','both_below_baseline']);
+    sh.appendRow(['timestamp','who','email','tier','score','version','item_id','choice','conf','sec','flipped','both_below_baseline']);
   }
   const t = new Date();
   for (const r of p.responses) {
-    sh.appendRow([t, p.who || 'anon', p.tier || '', p.score, p.v, r.id, r.choice, r.conf, r.sec, r.flipped, r.bb]);
+    sh.appendRow([t, p.who || 'anon', p.email || '', p.tier || '', p.score, p.v, r.id, r.choice, r.conf, r.sec, r.flipped, r.bb]);
   }
   return ContentService.createTextOutput('ok');
 }

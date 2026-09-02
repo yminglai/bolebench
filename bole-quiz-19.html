@@ -56,6 +56,7 @@ button.sec:disabled{opacity:.35}
   <h1>BoleBench &middot; Human Baseline</h1>
   <p class="sub">20 items, roughly 20&ndash;30 minutes. Each item shows two real, blinded attempts at the same ML research task (identity, scores, and results stripped). Your job: judge which attempt achieved the <b>higher final score</b>. Reality has already graded every item &mdash; at the end you will see whether you beat 8 frontier LLMs on exactly the same 20 items.</p>
   <label>Name / alias (optional)<input id="who" placeholder="name"></label>
+  <label>Email (so results can be attributed &amp; followed up)<input id="em" placeholder="you@scale.com"></label>
   <label>Research stage (for group statistics)
     <select id="tier">
       <option value="">select&hellip;</option>
@@ -205,11 +206,11 @@ function finish(){ started=false;
   const beat=rows.filter(([m,sc])=>!m.startsWith('YOU')&&k>sc).length;
   let bbline=''; if(flagged.length) bbline=` You flagged ${flagged.length} items as double-kills: ${flagHits} correct` + (bbTotal>flagHits? `, ${bbTotal-flagHits} true double-kills missed.` : '.');
   document.getElementById('fsub').textContent=`On these exact ${resp.length} items, you beat ${beat} of ${rows.length-1} frontier models.`+bbline;
-  const payload={who:document.getElementById('who').value,tier:document.getElementById('tier').value,score:k,responses:resp,v:'quiz-poolv2-v9'+(D.slice?'-slice'+D.slice:'')};
+  const payload={who:document.getElementById('who').value,email:(document.getElementById('em')||{value:''}).value,tier:document.getElementById('tier').value,score:k,responses:resp,v:'quiz-poolv2-v9'+(D.slice?'-slice'+D.slice:'')};
   window._blob=JSON.stringify(payload); document.getElementById('blob').textContent=window._blob; autocollect(); }
 function dl(){ const p=JSON.parse(window._blob);
-  let csv='who,tier,score,version,item_id,choice,conf,sec,flipped,both_below_baseline\n';
-  for(const r of p.responses){ csv+=[JSON.stringify(p.who||''),JSON.stringify(p.tier||''),p.score,p.v,r.id,r.choice,r.conf,r.sec,r.flipped,r.bb].join(',')+'\n'; }
+  let csv='who,email,tier,score,version,item_id,choice,conf,sec,flipped,both_below_baseline\n';
+  for(const r of p.responses){ csv+=[JSON.stringify(p.who||''),JSON.stringify(p.email||''),JSON.stringify(p.tier||''),p.score,p.v,r.id,r.choice,r.conf,r.sec,r.flipped,r.bb].join(',')+'\n'; }
   const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a');
   a.href=URL.createObjectURL(b); a.download='bolebench-quiz-'+(p.who||'anon').replace(/[^a-z0-9]/gi,'_')+'-'+p.v+'.csv';
   document.body.appendChild(a); a.click(); a.remove(); }
