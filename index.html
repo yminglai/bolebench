@@ -158,6 +158,20 @@
   </ol>
 </section>
 
+<section>
+  <h2>How tasks are admitted</h2>
+  <p class="muted">Any benchmark can supply BoleBench items if its tasks pass six criteria — the selection standard is the benchmark's identity, stated before anything is rolled out:</p>
+  <ol class="steps">
+    <li><b>C1 · Sealed resolution.</b> An objective held-out metric the attempt cannot see. No LLM-judge or rubric scoring.</li>
+    <li><b>C2 · Parallelizable.</b> ≥2 systems, same frozen start, same environment — so counterfactuals and failures are observable.</li>
+    <li><b>C3 · Open decision space.</b> An expert baseline to beat and multiple viable approaches, enforced by a non-tie-rate floor.</li>
+    <li><b>C4 · Ex-ante describable.</b> The approach is separable from its results, so blinding is possible.</li>
+    <li><b>C5 · Vintage-able.</b> Outcomes datable against judge training cutoffs; memorization probes runnable.</li>
+    <li><b>C6 · Budget-matchable.</b> Equal compute and time across systems — taste is executor-conditional.</li>
+  </ol>
+  <p class="muted">Admitted tasks are rolled out (k systems × matched budgets); items then pass a second gate: tie removal, gap stratification, blinding + leakage audit, committee labels. AI4AI and RSI-Exam pass all six; PaperBench fails C1; GAIA fails C4. In a 28-work audit of this field, 25 build hybrid banks from borrowed material and none author items from scratch — sourcing is the norm, the selection standard is what differs.</p>
+</section>
+
 <section id="taxonomy">
   <h2>Sources &#8594; item bank &#8594; pairwise comparison</h2>
   <p class="muted">Items come from a few kinds of sources — existing benchmarks (e.g. AI4AI-Bench), arXiv papers racing their own ablations, and anything else with several real attempts at one goal. They all become the same thing: a blinded item bank, judged by pairwise comparison, resolved by reality.</p>
