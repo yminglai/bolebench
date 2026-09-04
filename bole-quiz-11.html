@@ -221,7 +221,7 @@ function finish(){ started=false;
   rows.sort((a,b)=>b[1]-a[1]);
   document.getElementById('lb').innerHTML=rows.map(([m,sc])=>`<tr${m.startsWith('YOU')?' class="you"':''}><td>${m}</td><td class="n">${sc} / ${resp.length}</td></tr>`).join('');
   const beat=rows.filter(([m,sc])=>!m.startsWith('YOU')&&k>sc).length;
-  let bbline=''; if(flagged.length) bbline=` You flagged ${flagged.length} items as double-kills: ${flagHits} correct` + (bbTotal>flagHits? `, ${bbTotal-flagHits} true double-kills missed.` : '.');
+  let bbline=''; if(flagged.length) bbline=` You flagged ${flagged.length} items as "neither attempt beats the baseline": ${flagHits} correct` + (bbTotal>flagHits? `, ${bbTotal-flagHits} more such items missed.` : '.');
   document.getElementById('fsub').textContent=`On these exact ${resp.length} items, you beat ${beat} of ${rows.length-1} frontier models.`+bbline;
   const payload={who:document.getElementById('who').value,email:(document.getElementById('em')||{value:''}).value,tier:document.getElementById('tier').value,score:k,responses:resp,v:'quiz-proposal-v11'+(D.slice?'-slice'+D.slice:'')};
   window._blob=JSON.stringify(payload); document.getElementById('blob').textContent=window._blob; autocollect(); }
