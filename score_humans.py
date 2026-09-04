@@ -55,6 +55,10 @@ for (who, email, ver), rows in sorted(subs.items()):
             flags_ok += a["sigma_A"] <= 0.1 and a["sigma_B"] <= 0.1
     tier = rows[0].get("tier") or "?"
     status = "SPEED-RUN (excluded)" if speed_run else "ok"
+    # answer key ships base64-encoded in the public page, so a determined participant
+    # can decode it; near-perfect scores from unknown emails need identity verification
+    if not speed_run and n >= 15 and hits / n >= 0.9:
+        status = "SUSPECT (>=90% — verify identity before counting)"
     if not speed_run and n:
         tiers[tier].append(hits / n)
     fl = f"{flags_ok}/{flags_n}" if flags_n else "-"
