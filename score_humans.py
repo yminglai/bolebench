@@ -33,12 +33,18 @@ for line in open(args.answers):
 # his two retakes (9/20 gmail, 16/20 "final") count, with a datasheet note that
 # anchors were re-exposed on retakes.
 EXCLUDE_SUBS = {("haris.riaz@scale.com", "quiz-proposal-v11-slice16")}
+# sheet auto-rows superseded by a user-supplied download (pass the CSV alongside the
+# sheet export); matched rows are dropped ONLY from sheet-sourced input (has timestamp)
+REPLACED_BY_CSV = {("goks4765@gmail.com", "quiz-proposal-v11-slice6")}
 
 subs = defaultdict(list)  # (who, email, version) -> rows
 for path in args.csvs:
     with open(path) as f:
         for row in csv.DictReader(f):
-            if ((row.get("email") or "").lower(), row.get("version") or "") in EXCLUDE_SUBS:
+            ekey = ((row.get("email") or "").lower(), row.get("version") or "")
+            if ekey in EXCLUDE_SUBS:
+                continue
+            if ekey in REPLACED_BY_CSV and row.get("timestamp"):
                 continue
             key = (row.get("who") or "anon", row.get("email") or "", row.get("version") or "")
             subs[key].append(row)
