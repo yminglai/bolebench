@@ -29,14 +29,16 @@ for line in open(args.answers):
     if a["item_id"].startswith("pick"):
         answers[a["item_id"]] = a
 
-# excluded at owner's direction (2026-09-12)
-EXCLUDE_EMAILS = {"haris.riaz@scale.com", "harisriaz1700@gmail.com"}  # 3 retakes 6/9/16 — practice-contaminated
+# excluded at owner's direction: only Haris's first careless run (6/20, 26s/item);
+# his two retakes (9/20 gmail, 16/20 "final") count, with a datasheet note that
+# anchors were re-exposed on retakes.
+EXCLUDE_SUBS = {("haris.riaz@scale.com", "quiz-proposal-v11-slice16")}
 
 subs = defaultdict(list)  # (who, email, version) -> rows
 for path in args.csvs:
     with open(path) as f:
         for row in csv.DictReader(f):
-            if (row.get("email") or "").lower() in EXCLUDE_EMAILS:
+            if ((row.get("email") or "").lower(), row.get("version") or "") in EXCLUDE_SUBS:
                 continue
             key = (row.get("who") or "anon", row.get("email") or "", row.get("version") or "")
             subs[key].append(row)
