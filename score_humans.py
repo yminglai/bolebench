@@ -30,7 +30,7 @@ for line in open(args.answers):
         answers[a["item_id"]] = a
 
 # excluded at owner's direction (2026-09-12)
-EXCLUDE_EMAILS = {"haris.riaz@scale.com"}
+EXCLUDE_EMAILS = {"haris.riaz@scale.com", "harisriaz1700@gmail.com"}  # 3 retakes 6/9/16 — practice-contaminated
 
 subs = defaultdict(list)  # (who, email, version) -> rows
 for path in args.csvs:
